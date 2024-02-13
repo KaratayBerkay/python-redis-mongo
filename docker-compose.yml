@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  redis:
+    image: 'bitnami/redis:latest'
+    container_name: redis
+    networks:
+      - application-network
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/bitnami/redis/data
+
+  mongo:
+    image: 'bitnami/mongodb:latest'
+    container_name: mongo
+    networks:
+      - application-network
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/bitnami/mongodb
+
+  app:
+    container_name: app
+    build: ./app
+    command: python -m app
+    networks:
+      - application-network
+    depends_on:
+      - redis
+      - mongo
+
+
+networks:
+    application-network:
