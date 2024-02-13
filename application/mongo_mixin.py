@@ -8,5 +8,3 @@ mongo_client = MongoClient(
     document_class=dict,
     connect=True
 )
-
-

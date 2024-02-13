@@ -1,7 +1,6 @@
 import os
 import time
-
-from app import mongo_client
+from mongo_mixin import mongo_client
 
 
 class App:
