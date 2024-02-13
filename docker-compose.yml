@@ -24,17 +24,16 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_DATABASE=mongo_database
-      - MONGO_INITDB_ROOT_USERNAME=mongo_user
-      - MONGO_INITDB_ROOT_PASSWORD=mongo_password
+      - MONGODB_ROOT_PASSWORD=root
+      - MONGODB_DATABASE=mongo_database
+      - MONGODB_USERNAME=mongo_user
+      - MONGODB_PASSWORD=mongo_password
     volumes:
       - mongodb_data:/bitnami/mongodb
 
   app:
     container_name: app
-    build:
-      context: ./application
-      dockerfile: Dockerfile
+    build: ./application
     networks:
       - application-network
     depends_on:

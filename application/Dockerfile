@@ -1,11 +1,14 @@
-FROM python:3
+FROM python:3.10.13
 
-COPY ./requirements.txt ./var/application/requirements.txt
-
-WORKDIR /var/application
-
-RUN pip install --no-cache-dir -r /var/application/requirements.txt
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 
 COPY . /var/application
 
-CMD [ "python", "-m", "/var/application/app" ]
+RUN pip install --no-cache-dir -r /var/application/requirements.txt
+
+WORKDIR /var/application
+
+RUN echo "Application started"
+
+CMD ["python","-u","app.py"]
