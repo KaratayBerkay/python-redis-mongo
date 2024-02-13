@@ -1,4 +1,7 @@
 import os
+import time
+
+from app import mongo_client
 
 
 class App:
@@ -18,4 +21,7 @@ class App:
 
 if __name__ == "__main__":
     app = App()
-    app.boot_application()
+    while True:
+        print('Mongo client initiated', mongo_client, type(mongo_client))
+        app.boot_application()
+        time.sleep(5)
