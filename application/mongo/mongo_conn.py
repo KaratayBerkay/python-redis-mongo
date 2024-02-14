@@ -17,7 +17,7 @@ class MongoMixin:
             document_class=dict,
             connect=True,
         )
-        self.database_name = os.getenv("MONGODB_DATABASE")
+        self.database_name = os.getenv("MONGODB_DATABASE", "mongo_database")
         self.collection_name = "mongo_collection"
 
         self.database: Database = self.client.get_database(self.database_name)

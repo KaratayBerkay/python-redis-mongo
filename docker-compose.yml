@@ -9,10 +9,8 @@ services:
     ports:
       - "6379:6379"
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
       - REDIS_PASSWORD=redis_password
-      - REDIS_USERNAME=redis_user
+      - REDIS_PORT=6379
     volumes:
       - redis_data:/bitnami/redis/data
 
@@ -37,6 +35,9 @@ services:
     networks:
       - application-network
     environment:
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=redis_password
+      - REDIS_PORT=6379
       - MONGODB_DATABASE=mongo_database
       - MONGODB_USERNAME=mongo_user
       - MONGODB_PASSWORD=mongo_password

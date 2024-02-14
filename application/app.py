@@ -21,8 +21,5 @@ if __name__ == "__main__":
     app = App()
     while True:
         mongo_client = MongoActions()
-        # mongo_client.set_collection('collection')
-        # print("mongo_cli", mongo_client)
-        mongo_client.insert({"name": "test"})
         app.boot_application()
         time.sleep(10)
