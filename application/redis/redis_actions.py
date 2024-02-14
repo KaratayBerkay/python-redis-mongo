@@ -70,29 +70,14 @@ class RedisActions(RedisConn):
     def delete_set(self, name, value):
         self.redis.srem(name, value)
 
-    def set_sorted_set(self, name, value, score):
-        self.redis.zadd(name, {value: score})
-
-    def get_sorted_set(self, name):
-        return self.redis.zrange(name, 0, -1)
-
-    def delete_sorted_set(self, name, value):
-        self.redis.zrem(name, value)
 
 
 redis_cli = RedisActions()
 redis_cli.set("key", "value")
 redis_cli.set("key2", "value2")
 redis_cli.set("key3", "value3")
-result = redis_cli.get_keys()
 redis_cli.set_expire("key", "value", 3)
-print(result)
-print(redis_cli.get("key"))
-print(redis_cli.get("key2"))
-print(redis_cli.get("key3"))
+
 redis_cli.set_hash("hash", "key", json.dumps({"key": "value"}))
-print(redis_cli.get_hash("hash", "key"))
-print(redis_cli.get_all_hash("hash"))
 redis_cli.set_list("list", json.dumps(["value1", "value2", "value3"]))
 redis_cli.delete_list("list")
-print(redis_cli.get_list("list"))
