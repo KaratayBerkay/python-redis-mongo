@@ -69,15 +69,3 @@ class RedisActions(RedisConn):
 
     def delete_set(self, name, value):
         self.redis.srem(name, value)
-
-
-
-redis_cli = RedisActions()
-redis_cli.set("key", "value")
-redis_cli.set("key2", "value2")
-redis_cli.set("key3", "value3")
-redis_cli.set_expire("key", "value", 3)
-
-redis_cli.set_hash("hash", "key", json.dumps({"key": "value"}))
-redis_cli.set_list("list", json.dumps(["value1", "value2", "value3"]))
-redis_cli.delete_list("list")

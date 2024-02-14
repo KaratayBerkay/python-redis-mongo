@@ -1,7 +1,8 @@
 import os
 import time
 
-from application.mongo.mongo_actions import MongoActions
+from mongo.mongo_actions import MongoActions
+from redis.redis_actions import RedisActions
 
 
 class App:
@@ -22,4 +23,7 @@ if __name__ == "__main__":
     while True:
         mongo_client = MongoActions()
         app.boot_application()
+        redis_cli = RedisActions()
+        for _ in range(1000):
+            redis_cli.set(f"key{_}", f"value{_}")
         time.sleep(10)
