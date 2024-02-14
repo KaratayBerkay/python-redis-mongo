@@ -11,4 +11,4 @@ WORKDIR /var/application
 
 RUN echo "Application started"
 
-CMD ["python","-u","app.py"]
+CMD ["python", "-u", "app.py"]

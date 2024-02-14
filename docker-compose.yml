@@ -36,6 +36,10 @@ services:
     build: ./application
     networks:
       - application-network
+    environment:
+      - MONGODB_DATABASE=mongo_database
+      - MONGODB_USERNAME=mongo_user
+      - MONGODB_PASSWORD=mongo_password
     depends_on:
       - redis
       - mongo

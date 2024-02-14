@@ -1,11 +1,7 @@
-import datetime
-import json
 import os
 import time
 
-import pymongo.collection
-
-from mongo_mixin import mongo_client
+from application.mongo.mongo_actions import MongoActions
 
 
 class App:
@@ -23,26 +19,10 @@ class App:
 
 if __name__ == "__main__":
     app = App()
-    from pymongo.collection import Collection
     while True:
-        print("Mongo client initiated", mongo_client, type(mongo_client))
-        try:
-            database = mongo_client.mongo_database
-            collection: Collection = database['new_collection']
-            print("Database", database, type(database))
-            print(database.list_collection_names())
-            collection.insert_one({
-                "name": "new_entry",
-                "new_list": ["new", "list", "of", "values"],
-                "new_float": 3.14,
-                "new_int": 42,
-                "new_bool": True,
-                "new_dict": {"new_key": "new_value"},
-                "new_datetime": datetime.datetime.now(tz=datetime.timezone.utc).__str__()
-            })
-            result = collection.find({})
-            print("Result", list(result), ' | count : ', len(list(result)))
-        except Exception as e:
-            print("Error", e)
+        mongo_client = MongoActions()
+        # mongo_client.set_collection('collection')
+        # print("mongo_cli", mongo_client)
+        mongo_client.insert({"name": "test"})
         app.boot_application()
         time.sleep(10)
